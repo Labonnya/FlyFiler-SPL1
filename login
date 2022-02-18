@@ -1,10 +1,37 @@
-bool isChar(char c)
+void login()
 {
-    return ((c >= 'a' && c <= 'z')
-            || (c >= 'A' && c <= 'Z'));
-}
+    int count;
+    string userID,password,id,pass;
+    system("CLS");
+    cout<<"\t\tPlease enter your username and password: \n";
+    cout<<"\t\tUsername: ";
+    cin>>userID;
+    //cout<<"\n";
+    cout<<"\t\tPassword: ";
+    cin>>password;
 
-bool isDigit(const char c)
-{
-    return (c >= '0' && c <= '9');
+    ifstream input("record.txt");
+
+    while(input>>id>>pass)
+    {
+        if(id==userID && pass==password)
+        {
+            count=1;
+            system("CLS");
+        }
+    }
+
+    input.close();
+
+    if(count==1)
+    {
+        cout<<"\nYour LOGIN is successful!\n";
+        main();
+    }
+    else
+    {
+        cout<<"\t\t Wrong information. Please check your username and password again.\n";
+        main();
+    }
+
 }
