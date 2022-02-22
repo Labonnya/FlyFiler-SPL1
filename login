@@ -9,6 +9,7 @@ void login()
     //cout<<"\n";
     cout<<"\t\tPassword: ";
     cin>>password;
+    //
 
     ifstream input("record.txt");
 
