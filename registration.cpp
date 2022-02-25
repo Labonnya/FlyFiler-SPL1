@@ -10,7 +10,7 @@ void registration()
     cin>>user_name;
     cout<<"\t\tEnter your email id: ";
     cin>>email_id;
-
+//
     if (!isChar(email_id[0]))
         {
            cout<<"\t\tInvalid email id. Please try again.\n";
