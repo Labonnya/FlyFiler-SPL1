@@ -3,6 +3,7 @@
 #include<string.h>
 #include<cstdio>
 #include<stdlib.h>
+#include<Windows.h>
 using namespace std;
 
 //prototype
@@ -14,6 +15,8 @@ void renameFile();
 void copyFile();
 void deleteFile();
 void searchInFile();
+void searchFileInDirectory();
+void getFileSizeDirectory();
 
 int main()
 {
@@ -30,7 +33,9 @@ int main()
     cout<<"7. Delete a file"<<endl;
     cout<<"8. Rename a file"<<endl;
     cout<<"9. Search in a file"<<endl;
-    cout<<"10. Exit"<<endl;
+    cout<<"10. List all files in directory"<<endl;
+    cout<<"11. Get size of all files in directory"<<endl;
+    cout<<"12. Exit"<<endl;
     cout<<"Enter your choice: ";
     cin>>choice;
     switch(choice)
@@ -79,6 +84,14 @@ int main()
             searchInFile();
         }
     case 10:
+        {
+            searchFileInDirectory();
+        }
+    case 11:
+        {
+            getFileSizeDirectory();
+        }
+    case 12:
         {
             exit(1);
         }
@@ -475,6 +488,65 @@ void searchInFile()
 
      }
            }
+}
+
+void searchFileInDirectory()
+{
+   WIN32_FIND_DATAA FindFileData;
+    HANDLE hFindFile;
+    LPCWSTR file = L"*.cpp";
+
+    hFindFile = FindFirstFile((LPCSTR)file,&FindFileData);
+
+    if(INVALID_HANDLE_VALUE == hFindFile)
+    {
+        cout<<"Error in finding file."<<endl;
+        cout<<"Error "<< GetLastError() << endl;
+    }
+    else
+    {
+        cout<<"File found."<<endl;
+        wcout<<"File name - " <<FindFileData.cFileName<<endl;
+       // wcout<<"File size - " <<FindFileData.nFileSizeLow<<endl;
+    }
+    while(FindNextFile(hFindFile,&FindFileData))
+    {
+        wcout<< "File name - " <<FindFileData.cFileName<<endl;
+    }
+
+    FindClose(hFindFile);
+    main();
+
+}
+
+void getFileSizeDirectory()
+{
+     WIN32_FIND_DATAA FindFileData;
+    HANDLE hFindFile;
+    LPCWSTR file = L"*.cpp";
+
+    hFindFile = FindFirstFile((LPCSTR)file,&FindFileData);
+
+    if(INVALID_HANDLE_VALUE == hFindFile)
+    {
+        cout<<"Error in finding file."<<endl;
+        cout<<"Error "<< GetLastError() << endl;
+    }
+    else
+    {
+        cout<<"File found."<<endl;
+        wcout<<"File name - " <<FindFileData.cFileName<<endl;
+        wcout<<"File size - " <<FindFileData.nFileSizeLow<<endl;
+    }
+   while(FindNextFile(hFindFile,&FindFileData))
+    {
+        wcout<< "File name - " <<FindFileData.cFileName<<endl;
+        wcout<<"File size - " <<FindFileData.nFileSizeLow<<" kb"<<endl;
+    }
+
+    FindClose(hFindFile);
+    main();
+
 }
 
 
