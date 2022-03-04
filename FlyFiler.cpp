@@ -47,23 +47,24 @@ int main()
 void menuFlyFiler()
 {
     int choice;
-    cout<<"________________________________________________"<<endl;
-    cout<<"\t\tWelcome to the menu";
+    cout<<"\n\n\n\n";
+    cout<<"\t\t\t________________________________________________\n\n\n"<<endl;
+    cout<<"\t\t\t             WELCOME TO FLYFILER\n\n";
     cout<<"\n";
-    cout<<"1. Create new file"<<endl;
-    cout<<"2. Write in file"<<endl;
-    cout<<"3. Read from a file"<<endl;
-    cout<<"4. Update a file"<<endl;
-    cout<<"5. Rename a file"<<endl;
-    cout<<"6. Copy contents of a file to another file"<<endl;
-    cout<<"7. Delete a file"<<endl;
-    cout<<"8. Rename a file"<<endl;
-    cout<<"9. Search in a file"<<endl;
-    cout<<"10. List all files in directory"<<endl;
-    cout<<"11. Get size of all files in directory"<<endl;
-    cout<<"12. Clear file"<<endl;
-    cout<<"13. Merge content of two files"<<endl;
-    cout<<"14. Exit"<<endl;
+    cout<<"\t\t\t___________________Menu___________________\n\n";
+    cout<<"\t1. Create new file"<<endl;
+    cout<<"\t2. Write in file"<<endl;
+    cout<<"\t3. Read from a file"<<endl;
+    cout<<"\t4. Update a file"<<endl;
+    cout<<"\t5. Rename a file"<<endl;
+    cout<<"\t6. Copy contents of a file to another file"<<endl;
+    cout<<"\t7. Delete a file"<<endl;
+    cout<<"\t8. Merge contents of two file"<<endl;
+    cout<<"\t9. List all files in directory"<<endl;
+    cout<<"\t10. Get size of all files in directory"<<endl;
+    cout<<"\t11. Clear file"<<endl;
+    cout<<"\t12. Search in file"<<endl;
+    cout<<"\t13. Exit"<<endl;
 
     cout<<"Enter your choice: ";
     cin>>choice;
@@ -105,35 +106,35 @@ void menuFlyFiler()
         {
             deleteFile();
         }
-    case 8:
+   /* case 8:
         {
             renameFile();
-        }
-    case 9:
-        {
-            searchInFile();
-        }
-    case 10:
-        {
-            searchFileInDirectory();
-        }
-    case 11:
-        {
-            getFileSizeDirectory();
-        }
-    case 12:
-        {
-            clearFile();
-        }
-    case 13:
+        }*/
+    case 8:
         {
             mergeFile();
         }
-    case 14:
+    case 9:
+        {
+            searchFileInDirectory();
+        }
+    case 10:
+        {
+            getFileSizeDirectory();
+        }
+    case 11:
+        {
+            clearFile();
+        }
+    case 12:
+        {
+            searchInFile();
+        }
+    case 13:
         {
             exit(1);
         }
-    case 15:
+    case 14:
         {
             cout<<"\t\t\t Thank You!! \n\n";
               break;
@@ -147,6 +148,7 @@ void menuFlyFiler()
 }
 void createNewFile()
 {
+    system("CLS");
     string name;
     ofstream file;
 
@@ -169,7 +171,7 @@ void createNewFile()
         {
             file.open(name.c_str());
     }while(file.fail());
-
+    system("CLS");
     cout<<"File is successfully created."<<endl;
 
     file.close();
@@ -180,6 +182,7 @@ void createNewFile()
 
 void writeInFile()
 {
+        system("CLS");
         string filename,str;
         ofstream file;
 
@@ -201,6 +204,8 @@ void writeInFile()
         getline(cin,str);
 
         file<<str<<endl;
+        system("CLS");
+        cout<<"File is written successfully."<<endl;
         file.close();
 
            menuFlyFiler();
@@ -209,6 +214,7 @@ void writeInFile()
 
 void readFromFile()
 {
+    system("CLS");
     string filename,str;
         ifstream file;
 
@@ -228,12 +234,13 @@ void readFromFile()
         while(getline(file,str)){
             cout<<str<<endl;
         }
-
+        //system("CLS");
            menuFlyFiler();
 }
 
 void updateFile()
 {
+    system("CLS");
     string filename,str;
     int n;
         ofstream file;
@@ -280,6 +287,7 @@ void updateFile()
 
 void copyFile()
 {
+    system("CLS");
     ifstream file1;
     ofstream file2;
 
@@ -315,6 +323,7 @@ void copyFile()
                file2<<ch;
            }
         }
+        system("CLS");
     cout<<"File copied successfully."<<endl;
     file1.close();
     file2.close();
@@ -324,7 +333,7 @@ void copyFile()
 
 void deleteFile()
 {
-   string filename;
+    string filename;
         ifstream file;
 
         cout<<"Enter the name of the file you want to delete: "<<endl;
@@ -332,18 +341,15 @@ void deleteFile()
         if(!file)
     {
         cout<<"Error in opening source file. Try again.";
-
-           menuFlyFiler();
+        main();
     }
         remove(filename.c_str());
         cout<<"File is removed."<<endl;
-
-           menuFlyFiler();
-
+        menuFlyFiler();
 }
 void renameFile()
 {
-      ifstream file1;
+    ifstream file1;
       ofstream file2;
 
     char ch;
@@ -356,8 +362,7 @@ void renameFile()
     if(!file1)
     {
         cout<<"Error in opening source file. Try again.";
-
-           menuFlyFiler();
+        main();
     }
     cout<<"Enter the name you want to set for your file: "<<endl;
     cin>>fname2;
@@ -366,8 +371,7 @@ void renameFile()
     if(!file2)
     {
         cout<<"Error in opening destination file. Try again.";
-
-           menuFlyFiler();
+        main();
     }
      while(!file1.eof())
         {
@@ -380,14 +384,14 @@ void renameFile()
          file1.close();
         remove(fname1.c_str());
         cout<<"File is renamed."<<endl;
-
-           menuFlyFiler();
+        menuFlyFiler();
         file2.close();
 }
 
 void searchInFile()
 {
-        string filename;
+
+string filename;
         int choice;
         ifstream file;
 
@@ -439,7 +443,8 @@ void searchInFile()
                 {
                     cout<<"Word "<<c<< " is found and occurred "<< count <<" times in file."<<endl;
                 }
-                break;
+
+                //searchInFile();
 
             }
         case 2:
@@ -464,7 +469,9 @@ void searchInFile()
                 {
                     cout<<"Character is "<<c<< " found and occurred "<< count <<" times in file."<<endl;
                 }
+                searchInFile();
                 break;
+
             }
         case 3:
             {
@@ -480,8 +487,10 @@ void searchInFile()
                     }
                 }
                 cout<<"The longest word is " <<ch2<<endl;
-                cout<<"Length of the longest word is " <<maximum-1<<endl;
+                cout<<"Length of the longest word is " <<maximum<<endl;
+                searchInFile();
                 break;
+                 //searchInFile();
             }
         case 4:
             {
@@ -496,9 +505,12 @@ void searchInFile()
                         strcpy(ch2,ch1);
                     }
                 }
+               // system("CLS");
                 cout<<"The shortest word is " <<ch2<<"."<<endl;
                 cout<<"Length of the shortest word is " <<minimum<<"."<<endl;
+                searchInFile();
                 break;
+                // searchInFile();
             }
         case 5:
             {
@@ -512,8 +524,11 @@ void searchInFile()
                            count++;
                         }
                    }
+
                        cout<<"Number of lines in file is "<<count<<"."<<endl;
-                       break;
+searchInFile();
+                break;
+                        //searchInFile();
             }
 
         case 6:
@@ -530,19 +545,26 @@ void searchInFile()
                    }
                         if(count==0)
                 {
+                    system("CLS");
                     cout<<"Digit is not present in file."<<endl;
                 }
                 else
                 {
+                   // system("CLS");
                     cout<<"Digits are found and occurred "<< count <<" times in file."<<endl;
                 }
+menuFlyFiler();
+               break;
 
-     }
+                //searchInFile();
            }
+           }
+
 }
 
 void searchFileInDirectory()
 {
+    system("CLS");
    WIN32_FIND_DATAA FindFileData;
     HANDLE hFindFile;
     LPCWSTR file = L"*.cpp";
@@ -573,6 +595,7 @@ void searchFileInDirectory()
 
 void getFileSizeDirectory()
 {
+    system("CLS");
      WIN32_FIND_DATAA FindFileData;
     HANDLE hFindFile;
     LPCWSTR file = L"*.cpp";
@@ -593,7 +616,7 @@ void getFileSizeDirectory()
    while(FindNextFile(hFindFile,&FindFileData))
     {
         wcout<< "File name - " <<FindFileData.cFileName<<endl;
-        wcout<<"File size - " <<FindFileData.nFileSizeLow<<" kb"<<endl;
+        wcout<<"File size - " <<FindFileData.nFileSizeLow<<endl;
     }
 
     FindClose(hFindFile);
@@ -603,6 +626,7 @@ void getFileSizeDirectory()
 
 void clearFile()
 {
+    system("CLS");
 
     string filename,str;
         ofstream file;
@@ -618,6 +642,7 @@ void clearFile()
            menuFlyFiler();
     }
     file.close();
+    system("CLS");
     cout<<"File is cleared."<<endl;
 
            menuFlyFiler();
@@ -625,7 +650,7 @@ void clearFile()
 
 void mergeFile()
 {
-
+system("CLS");
       ifstream file1,file2;
       ofstream file3;
 
@@ -672,6 +697,7 @@ void mergeFile()
         file1.close();
         file2.close();
         file3.close();
+        system("CLS");
         cout<<"File is merged successfully."<<endl;
 
            menuFlyFiler();
@@ -697,20 +723,28 @@ void menuFirst()
     switch(choice)
     {
     case 1:
-        login();
-        break;
+        {
+          login();
+           break;
+        }
 
     case 2:
-        registration();
-        break;
+        {
+           registration();
+            break;
+        }
 
     case 3:
-        forgot();
-        break;
+        {
+             forgot();
+               break;
+        }
 
     case 4:
-        cout<<"\t\t\t Thank You!! \n\n";
-        break;
+        {
+            cout<<"\t\t\t Thank You!! \n\n";
+               break;
+        }
 
     /*case 5:
         {
