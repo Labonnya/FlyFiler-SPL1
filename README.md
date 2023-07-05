@@ -1,5 +1,7 @@
 # FlyFiler
 
+The FlyFiler project provides a set of functions that allow users to perform various file operations, including listing files in a directory, viewing file contents, writing to a file, obtaining file size, renaming files, searching within files, clearing file contents, deleting files, merging contents of two files, as well as encrypting or decrypting text files using AES or DES algorithms, and compressing or decompressing files using Huffman algorithm.
+
 ![image](https://github.com/Labonnya/FlyFiler/assets/75426550/1b8e26d3-a72f-4f84-bb04-6d0cf1c5bde0)
 
 ![image](https://github.com/Labonnya/FlyFiler/assets/75426550/806a05b7-0e89-450a-b58d-095702ff7f36)
